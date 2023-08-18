@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>VNLib.Plugins.Essentials.Authentication.Auth0</RootNamespace>
+    <AssemblyName>Authentication.Auth0</AssemblyName>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AnalysisLevel>latest-all</AnalysisLevel>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Authentication.Auth0</PackageId>
+    <Authors>Vaughn Nugent</Authors>
+    <Company>Vaughn Nugent</Company>
+    <Product>Provides Auth0 authentication to your application</Product>
+    <Copyright>Copyright © 2023 Vaughn Nugent</Copyright>
+    <PackageProjectUrl>https://www.vaughnnugent.com/resources/software/modules/authentication.auth0</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/VnUgE/Authentication.Auth0</RepositoryUrl>
+    <Description>
+      Essentials framework plugin that provides authentication to your application using Auth0 api's and services.
+    </Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErrorProne.NET.CoreAnalyzers" Version="0.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ErrorProne.NET.Structs" Version="0.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0033" />
+  </ItemGroup>
+
+  <Target Condition="'$(BuildingInsideVisualStudio)' == true" Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="start xcopy &quot;$(TargetDir)&quot; &quot;..\..\..\..\VNLib\devplugins\$(TargetName)&quot; /E /Y /R" />
+  </Target>
+
+</Project>

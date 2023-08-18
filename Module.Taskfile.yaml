@@ -1,0 +1,25 @@
+#Copyright 2023 Vaughn Nugent
+
+#This allows the Task build system to run commands to build components of the project
+#You must install Task before executing this file, https://taskfile.dev
+
+version: '3'
+
+tasks:
+
+  #update project source code
+  update:
+    cmds:
+     - git remote update
+     - git reset --hard  
+     - git pull origin {{.BRANCH_NAME}} --verify-signatures
+
+  build:
+    cmds:
+
+  postbuild_success:
+    cmds:
+
+  #cleanup hook
+  clean:
+    cmds:

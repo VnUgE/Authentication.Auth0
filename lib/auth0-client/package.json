@@ -1,0 +1,61 @@
+{
+  "name": "@vnuge/auth0-client",
+  "version": "0.1.0",
+  "type": "module",
+  "copyright": "Copyright \u00A9 2023 Vaughn Nugent",
+  "author": "Vaughn Nugent",
+  "description": "A browser client library to handle VNLib.Plugins.Essentials.Accounts social OAuth authentication flows for your web application",
+  "repository": "https://github.com/VnUgE/Authentication.Auth0/tree/master/lib/auth0-client",
+  "output_dir": "bin",
+
+  "license": "MIT",
+
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore src",
+    "build": "tsc",
+    "clean": "if exist dist ( rd /S /Q lib)"
+  },
+
+  "devDependencies": {
+    "@babel/types": "^7.x",
+    "@types/lodash-es": "^4.14.194",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "eslint": "^8.39.0",
+    "axios": "^1.x",
+    "jose": "^4.13.x",
+    "universal-cookie": "^4.0.4"
+  },
+  "peerDependencies": {
+    "lodash-es": "^4.x",
+    "axios": "^1.4.0",
+    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/releases/vnlib-browser/v0.1.7.tgz",
+    "@vueuse/core": "^10.x",
+    "vue": "^3.x",
+    "vue-router": "^4.x"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": []
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {},
+    "ignorePatterns": [
+      "src/**/*.test.ts",
+      "src/frontend/generated/*"
+    ],
+    "env": {
+      "browser": true
+    }
+  }
+}

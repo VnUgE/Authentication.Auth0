@@ -1,0 +1,33 @@
+#Copyright 2023 Vaughn Nugent
+
+# https://taskfile.dev
+
+#taskfile for building the client library
+
+version: '3'
+
+tasks:
+
+  build:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+    #install deps and run build
+    - npm install
+    - npm run build
+    
+  #copy artifacts to temp directory
+  postbuild_success:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+    - powershell -Command "mkdir bin -Force"
+    #tar the package and put it in the output dir
+    - tar --exclude="./node_modules" --exclude="./src" --exclude="./.git" --exclude="./bin" --exclude=".gitignore" --exclude="*.yaml" -czf bin/release.tgz .
+
+  #clean hook
+  clean:
+    dir: '{{.USER_WORKING_DIR}}'
+    ignore_error: true
+    cmds:
+    - cmd: powershell -Command "Remove-Item -Recurse node_modules"
+    - cmd: powershell -Command "Remove-Item -Recurse dist"
+    - cmd: powershell -Command "Remove-Item -Recurse -Force bin"
