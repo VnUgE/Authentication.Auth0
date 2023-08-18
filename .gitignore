@@ -384,7 +384,6 @@ dist-ssr
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 *.sw?
 
 /plugins/Authentication/src/*.Auth0.json
