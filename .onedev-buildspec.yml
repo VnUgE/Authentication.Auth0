@@ -1,0 +1,40 @@
+version: 24
+jobs:
+- name: GitHub Push
+  steps:
+  - !PushRepository
+    name: Github push sync
+    remoteUrl: https://github.com/VnUgE/Authentication.Auth0.git
+    userName: VnUgE
+    passwordSecret: github-access-token
+    force: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !TagCreateTrigger
+    projects: Authentication.Auth0
+  - !BranchUpdateTrigger
+    projects: Authentication.Auth0
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
+- name: GitHub Pull
+  steps:
+  - !PullRepository
+    name: GitHub sync pull
+    remoteUrl: https://github.com/VnUgE/Authentication.Auth0.git
+    syncToChildProject: false
+    userName: VnUgE
+    passwordSecret: github-access-token
+    refs: refs/heads/* refs/tags/*
+    withLfs: false
+    force: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !ScheduleTrigger
+    cronExpression: 0 15 10 ? * *
+    projects: Authentication.Auth0
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
