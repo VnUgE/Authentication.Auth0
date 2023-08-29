@@ -33,7 +33,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0033" />
+    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0035" />
   </ItemGroup>
 
   <Target Condition="'$(BuildingInsideVisualStudio)' == true" Name="PostBuild" AfterTargets="PostBuildEvent">
