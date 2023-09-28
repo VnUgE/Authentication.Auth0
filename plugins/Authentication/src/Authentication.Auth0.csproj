@@ -19,10 +19,21 @@
     <Copyright>Copyright © 2023 Vaughn Nugent</Copyright>
     <PackageProjectUrl>https://www.vaughnnugent.com/resources/software/modules/authentication.auth0</PackageProjectUrl>
     <RepositoryUrl>https://github.com/VnUgE/Authentication.Auth0</RepositoryUrl>
-    <Description>
-      Essentials framework plugin that provides authentication to your application using Auth0 api's and services.
-    </Description>
+    <Description>Essentials framework plugin that provides authentication to your application using Auth0 api's and services.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ErrorProne.NET.CoreAnalyzers" Version="0.1.2">
@@ -33,7 +44,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0036" />
+    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0039" />
   </ItemGroup>
 
   <Target Condition="'$(BuildingInsideVisualStudio)' == true" Name="PostBuild" AfterTargets="PostBuildEvent">
