@@ -17,7 +17,7 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { useSession, useSessionUtils, WebMessage, useAxios } from '@vnuge/vnlib.browser'
+import { useSessionUtils, WebMessage, useAxios } from '@vnuge/vnlib.browser'
 
 export interface Auth0LoginApi {
     /**
@@ -42,15 +42,18 @@ export interface Auth0LoginApi {
  */
 export const useAuth0Login = (loginUrl: string, logoutUrl: string): Auth0LoginApi => {
 
-    const { browserId, publicKey } = useSession()
+    const { getClientSecInfo } = useSessionUtils()
     const { KeyStore } = useSessionUtils()
     const { put, post } = useAxios(null)
 
     const login = async () => {
 
+        // Get the public key and browser id (or regen if required)
+        const { publicKey, browserId } = await getClientSecInfo()
+
         const { data } = await put<WebMessage<string>>(loginUrl, {
-            browser_id: browserId.value,
-            public_key: publicKey.value
+            browser_id: browserId,
+            public_key: publicKey
         })
 
         const encDat = data.getResultOrThrow()
