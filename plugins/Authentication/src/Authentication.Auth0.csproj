@@ -22,6 +22,7 @@
     <Description>Essentials framework plugin that provides authentication to your application using Auth0 api's and services.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,7 +45,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0045" />
+    <PackageReference Include="VNLib.Plugins.Essentials.SocialOauth" Version="0.1.0-ci0049" />
   </ItemGroup>
 
   <Target Condition="'$(BuildingInsideVisualStudio)' == true" Name="PostBuild" AfterTargets="PostBuildEvent">

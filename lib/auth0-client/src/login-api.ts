@@ -18,6 +18,8 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { useSessionUtils, WebMessage, useAxios } from '@vnuge/vnlib.browser'
+import { get } from '@vueuse/core'
+import { MaybeRef } from 'vue'
 
 export interface Auth0LoginApi {
     /**
@@ -40,10 +42,9 @@ export interface Auth0LoginApi {
  * @param logoutUrl The Auth0 plugin logout path
  * @returns A new Auth0LoginApi instance for executing Auth0 oauth flows
  */
-export const useAuth0Login = (loginUrl: string, logoutUrl: string): Auth0LoginApi => {
+export const useAuth0Login = (loginUrl: MaybeRef<string>, logoutUrl: MaybeRef<string>): Auth0LoginApi => {
 
-    const { getClientSecInfo } = useSessionUtils()
-    const { KeyStore } = useSessionUtils()
+    const { getClientSecInfo, KeyStore } = useSessionUtils()
     const { put, post } = useAxios(null)
 
     const login = async () => {
@@ -51,7 +52,7 @@ export const useAuth0Login = (loginUrl: string, logoutUrl: string): Auth0LoginAp
         // Get the public key and browser id (or regen if required)
         const { publicKey, browserId } = await getClientSecInfo()
 
-        const { data } = await put<WebMessage<string>>(loginUrl, {
+        const { data } = await put<WebMessage<string>>(get(loginUrl), {
             browser_id: browserId,
             public_key: publicKey
         })
@@ -70,7 +71,7 @@ export const useAuth0Login = (loginUrl: string, logoutUrl: string): Auth0LoginAp
     }
 
     const logout = async (): Promise<void> => {
-        const { data } = await post<WebMessage<string>>(logoutUrl, {})
+        const { data } = await post<WebMessage<string>>(get(logoutUrl), {})
         data.getResultOrThrow();
     }
 

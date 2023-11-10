@@ -19,6 +19,8 @@ tasks:
 
   postbuild_success:
     cmds:
+    #git archive in the module directory
+     - git archive --format {{.ARCHIVE_FILE_FORMAT}} --output {{.ARCHIVE_FILE_NAME}} HEAD
 
   #cleanup hook
   clean:

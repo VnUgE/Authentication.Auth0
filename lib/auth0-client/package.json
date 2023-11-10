@@ -25,13 +25,13 @@
     "@typescript-eslint/eslint-plugin": "^6.0.x",
     "eslint": "^8.39.0",
     "axios": "^1.x",
-    "jose": "^4.13.x",
+    "jose": "^5.1.x",
     "universal-cookie": "^6.x"
   },
   "peerDependencies": {
     "lodash-es": "^4.x",
     "axios": "^1.4.0",
-    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/vnlib.browser/4deb76d163e228dfba63c0b8fcf49789c6017011/@vnuge-vnlib.browser/release.tgz",
+    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/vnlib.browser/52f636ef74e6f9638e9df3a64147484c7b0b85f0/@vnuge-vnlib.browser/release.tgz",
     "@vueuse/core": "^10.x",
     "vue": "^3.x",
     "vue-router": "^4.x"
