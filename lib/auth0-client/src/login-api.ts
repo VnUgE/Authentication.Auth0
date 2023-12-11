@@ -17,24 +17,9 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { useSessionUtils, WebMessage, useAxios } from '@vnuge/vnlib.browser'
 import { get } from '@vueuse/core'
-import { MaybeRef } from 'vue'
-
-export interface Auth0LoginApi {
-    /**
-     * Attempts to execute a user-login with the server for an Auth0 
-     * oauth flow. This will redirect the user to the Auth0 login page
-     * @returns Promise<void>
-     */
-    login: () => Promise<void>
-    /**
-     * Attempts to execute a user-logout with the server for an Auth0
-     * oauth flow. This will redirect the user to the Auth0 logout page
-     * @returns Promise<void>
-     */
-    logout: () => Promise<void>
-}
+import { type MaybeRef } from 'vue'
+import { type OAuthMethod, type WebMessage } from '@vnuge/vnlib.browser'
 
 /**
  * Creates a new Auth0 authentication api for executing Auth0 oauth flows
@@ -42,41 +27,17 @@ export interface Auth0LoginApi {
  * @param logoutUrl The Auth0 plugin logout path
  * @returns A new Auth0LoginApi instance for executing Auth0 oauth flows
  */
-export const useAuth0Login = (loginUrl: MaybeRef<string>, logoutUrl: MaybeRef<string>): Auth0LoginApi => {
-
-    const { getClientSecInfo, KeyStore } = useSessionUtils()
-    const { put, post } = useAxios(null)
-
-    const login = async () => {
-
-        // Get the public key and browser id (or regen if required)
-        const { publicKey, browserId } = await getClientSecInfo()
-
-        const { data } = await put<WebMessage<string>>(get(loginUrl), {
-            browser_id: browserId,
-            public_key: publicKey
-        })
-
-        const encDat = data.getResultOrThrow()
-        // Decrypt the result which should be a redirect url
-        const result = await KeyStore.decryptDataAsync(encDat)
-        // get utf8 text
-        const text = new TextDecoder('utf-8').decode(result)
-        // Recover url
-        const redirect = new URL(text)
-        // Force https
-        redirect.protocol = 'https:'
-        // redirect to the url
-        window.location.href = redirect.href
-    }
-
-    const logout = async (): Promise<void> => {
-        const { data } = await post<WebMessage<string>>(get(logoutUrl), {})
-        data.getResultOrThrow();
-    }
-
+export const useAuth0Login = (loginUrl: MaybeRef<string>, logoutUrl: MaybeRef<string>): OAuthMethod => {
     return {
-        login,
-        logout
+        Id: 'auth0',
+        
+        loginUrl: () => get(loginUrl),
+
+        //Set explicit logout data
+        getLogoutData: () => ({ url: get(logoutUrl), args: {} }),
+
+        onSuccessfulLogout(responseData: unknown) {
+            (responseData as WebMessage<string>).getResultOrThrow();
+        },
     }
 }
