@@ -31,7 +31,7 @@
   "peerDependencies": {
     "lodash-es": "^4.x",
     "axios": "^1.4.0",
-    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/vnlib.browser/141493f6d9f25d4b8d78c87afea3fa773630ba14/@vnuge-vnlib.browser/release.tgz",
+    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/vnlib.browser/0b1acb55ae395723772251318254ba131e987107/@vnuge-vnlib.browser/release.tgz",
     "@vueuse/core": "^10.x",
     "vue": "^3.x",
     "vue-router": "^4.x"
