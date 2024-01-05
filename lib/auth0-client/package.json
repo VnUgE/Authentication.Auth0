@@ -2,7 +2,7 @@
   "name": "@vnuge/auth0-client",
   "version": "0.1.0",
   "type": "module",
-  "copyright": "Copyright \u00A9 2023 Vaughn Nugent",
+  "copyright": "Copyright \u00A9 2024 Vaughn Nugent",
   "author": "Vaughn Nugent",
   "description": "A browser client library to handle VNLib.Plugins.Essentials.Accounts social OAuth authentication flows for your web application",
   "repository": "https://github.com/VnUgE/Authentication.Auth0/tree/master/lib/auth0-client",
@@ -26,12 +26,12 @@
     "eslint": "^8.39.0",
     "axios": "^1.x",
     "jose": "^5.1.x",
-    "universal-cookie": "^6.x"
+    "universal-cookie": "^7.x"
   },
   "peerDependencies": {
     "lodash-es": "^4.x",
     "axios": "^1.4.0",
-    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/plugins.essentials/4890ffb8f4aafed897cabc368fa105a70615a2de/@vnuge-vnlib.browser/release.tgz",
+    "@vnuge/vnlib.browser": "https://www.vaughnnugent.com/public/resources/software/builds/Plugins.Essentials/592669252fdcfd9ce3f443abbfa2cb9b3387a5d2/@vnuge-vnlib.browser/release.tgz",
     "@vueuse/core": "^10.x",
     "vue": "^3.x",
     "vue-router": "^4.x"
